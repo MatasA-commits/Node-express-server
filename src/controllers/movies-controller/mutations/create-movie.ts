@@ -2,9 +2,9 @@ import { RequestHandler } from 'express';
 import * as yup from 'yup';
 
 import createId from 'uniqid';
-import moviesData from './movies-data';
-import { MovieModel } from './types';
-import movieDataValidationSchema from './movie-data-validation-schema';
+import moviesData from '../movies-data';
+import { MovieModel } from '../types';
+import movieDataValidationSchema from '../validation-schemas/movie-data-validation-schema';
 
 type MovieData = Omit<MovieModel, 'id'>;
 type PartialMovieData = PartialRecursive<MovieData>;

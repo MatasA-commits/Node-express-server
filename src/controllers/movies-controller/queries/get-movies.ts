@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
-import { MovieModel } from './types';
-import moviesData from './movies-data';
+import { MovieModel } from '../types';
+import moviesData from '../movies-data';
 
 export const getMovies: RequestHandler<
 {}, // Parametrai

@@ -11,3 +11,5 @@ export type MovieModel = {
 };
 
 export type MovieData = Omit<MovieModel, 'id'>;
+
+export type PartialMovieDataValidation = Partial<MovieData>;

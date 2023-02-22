@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { MovieData } from './types';
+import { MovieData } from '../types';
 
 const movieDataValidationSchema: yup.ObjectSchema<MovieData> = yup.object({
   title: yup.string()
