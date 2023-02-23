@@ -1,7 +1,7 @@
 import morgan from 'morgan';
 import express from 'express';
 import config from './config';
-import moviesRouter from './routers/movies-router';
+import moviesRouter from './controllers/movies-controller';
 
 const server = express();
 
