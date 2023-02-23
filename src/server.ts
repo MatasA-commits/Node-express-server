@@ -1,6 +1,5 @@
 import morgan from 'morgan';
 import express from 'express';
-import mysql from 'mysql';
 import config from './config';
 import moviesRouter from './controllers/movies-controller';
 import { connectMySql } from './services/my-sql';
