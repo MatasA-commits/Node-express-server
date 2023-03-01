@@ -12,7 +12,7 @@ const partialMovieDataValidationSchema: yup.ObjectSchema<PartialMovieDataValidat
   year: yearSchema,
   rating: ratingSchema,
   images: imagesSchema,
-  mainCharacter: mainCharacterSchema,
+  main_character: mainCharacterSchema,
 }).strict(true);
 
 export default partialMovieDataValidationSchema;

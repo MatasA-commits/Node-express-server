@@ -1,10 +1,10 @@
-import { MovieModel } from './types';
+import { PrivateMovieModel } from './types';
 
-const moviesData: MovieModel[] = [
+const moviesData: PrivateMovieModel[] = [
   {
     id: '1',
     title: 'Harry Potter and the Sorcerers Stone',
-    mainCharacter: {
+    main_character: {
       actor: 'Daniel Radcliffe',
       role: 'Harry Potter',
     },
@@ -19,7 +19,7 @@ const moviesData: MovieModel[] = [
   {
     id: '2',
     title: 'Edge of Tommorow',
-    mainCharacter: {
+    main_character: {
       actor: 'Tom Cruise',
       role: 'Cage',
     },
@@ -34,7 +34,7 @@ const moviesData: MovieModel[] = [
   {
     id: '3',
     title: 'James Bond Skyfall',
-    mainCharacter: {
+    main_character: {
       actor: 'Daniel Craig',
       role: 'James Bond',
     },
@@ -49,7 +49,7 @@ const moviesData: MovieModel[] = [
   {
     id: '4',
     title: 'Glass Onion: A Knives Out Mystery',
-    mainCharacter: {
+    main_character: {
       actor: 'Daniel Craig',
       role: 'Benoit Blanc',
     },
@@ -64,7 +64,7 @@ const moviesData: MovieModel[] = [
   {
     id: '5',
     title: '1917',
-    mainCharacter: {
+    main_character: {
       actor: 'George MacKay',
       role: 'Lance Corporal Schofield',
     },
@@ -79,7 +79,7 @@ const moviesData: MovieModel[] = [
   {
     id: '6',
     title: 'Dunkirk',
-    mainCharacter: {
+    main_character: {
       actor: 'Fionn Whitehead',
       role: 'Tommy',
     },
@@ -94,7 +94,7 @@ const moviesData: MovieModel[] = [
   {
     id: '7',
     title: 'All Quiet on the Western Front',
-    mainCharacter: {
+    main_character: {
       actor: 'Felix Kammerer',
       role: 'Paul Bäumer',
     },
@@ -109,7 +109,7 @@ const moviesData: MovieModel[] = [
   {
     id: '8',
     title: 'Knives Out',
-    mainCharacter: {
+    main_character: {
       actor: 'Daniel Craig',
       role: 'Benoit Blanc',
     },
@@ -124,7 +124,7 @@ const moviesData: MovieModel[] = [
   {
     id: '9',
     title: 'Pirates of the Caribbean: The Curse of the Black Pearl',
-    mainCharacter: {
+    main_character: {
       actor: 'Johnny Depp',
       role: 'Jack Sparrow',
     },
@@ -139,7 +139,7 @@ const moviesData: MovieModel[] = [
   {
     id: '10',
     title: 'Black Mass',
-    mainCharacter: {
+    main_character: {
       actor: 'Johnny Depp',
       role: "James 'Whitey' Bulger",
     },
@@ -154,7 +154,7 @@ const moviesData: MovieModel[] = [
   {
     id: '11',
     title: 'Legend',
-    mainCharacter: {
+    main_character: {
       actor: 'Tom Hardy',
       role: 'Reggie Kray',
     },
@@ -169,7 +169,7 @@ const moviesData: MovieModel[] = [
   {
     id: '12',
     title: 'No Sudden Move',
-    mainCharacter: {
+    main_character: {
       actor: 'Don Cheadle',
       role: 'Curt Goynes',
     },

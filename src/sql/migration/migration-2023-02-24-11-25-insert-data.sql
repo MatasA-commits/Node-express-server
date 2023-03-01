@@ -10,7 +10,7 @@ insert into main_character (actor, role) values
 ('Johnny Depp', 'Jack Sparrow'),
 ('Johnny Depp', 'James "Whitey" Bulger'),
 ('Tom Hardy', 'Reggie Kray'),
-('Don Cheadle', 'Curt Goynes')
+('Don Cheadle', 'Curt Goynes');
 
 insert into movies (title, year, rating, mainCharacterId )values
 ('Harry Potter and the Sorcerers Stone', "2001", 7.6, 1),
@@ -24,7 +24,7 @@ insert into movies (title, year, rating, mainCharacterId )values
 ('Pirates of the Caribbean: The Curse of the Black Pearl', '2003', 8.1, 9),
 ('Black Mass', '2015', 6.9, 10),
 ('Legend', '2015', 6.3, 11),
-('No Sudden Move', '2021', 6.4, 12)
+('No Sudden Move', '2021', 6.4, 12);
 
 insert into images (src, movieId) values
 ('https://upload.wikimedia.org/wikipedia/en/7/7a/Harry_Potter_and_the_Philosopher%27s_Stone_banner.jpg', 1),

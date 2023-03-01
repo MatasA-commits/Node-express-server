@@ -1,26 +1,40 @@
 import { RequestHandler } from 'express';
+import mysql from 'mysql2/promise';
 import { MovieModel } from '../types';
-import moviesData from '../movies-data';
+import config from '../../../config';
 
 export const getMovie: RequestHandler<
-{ id: string | undefined }, // Parametrai
-MovieModel | ResponseError, // Atsakymo tipas
-{}, // Body - gaunami duomenys
-{} // QueryParams - duomenys siunciant GET uzklausas, pvz: ?min=1&max=18
-> = (req, res) => {
+{ id: string | undefined },
+MovieModel | ResponseError,
+{},
+{}
+> = async (req, res) => {
   const { id } = req.params;
 
   if (id === undefined) {
     res.status(400).json({ error: 'server setup error' });
     return;
   }
+  const mySqlConnection = await mysql.createConnection(config.db);
+  const preparedSql = `
+  SELECT m.id, m.title, JSON_OBJECT('actor', c.actor, 'role', c.role) as main_character, m.year, m.rating, json_arrayagg(i.src) as images
+  FROM images as i
+  LEFT JOIN movies as m
+  ON i.movieId = m.id
+  LEFT JOIN  main_character as c
+  ON m.mainCharacterId = c.id
+  WHERE m.id = ?
+  GROUP BY m.id;
+`;
+  const preparedSqlData = [id];
 
-  const foundMovie = moviesData.find((movie) => movie.id === id);
+  const [movies] = await mySqlConnection.query<MovieModel[]>(preparedSql, preparedSqlData);
+  await mySqlConnection.end();
 
-  if (foundMovie === undefined) {
-    res.status(400).json({ error: `movie with id: ${id} was not found` });
+  if (movies.length === 0) {
+    res.status(404).json({ error: `movie with id: ${id} was not found` });
     return;
   }
 
-  res.status(200).json(foundMovie);
+  res.status(200).json(movies[0]);
 };

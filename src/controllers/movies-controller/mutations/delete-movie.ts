@@ -1,4 +1,4 @@
-import { RequestHandler } from 'express';
+/* import { RequestHandler } from 'express';
 import { MovieModel } from '../types';
 import moviesData from '../movies-data';
 
@@ -24,4 +24,4 @@ MovieModel | ResponseError, // Atsakymo tipas
 
   const [deletedMovie] = moviesData.splice(foundIndex, 1);
   res.status(200).json(deletedMovie);
-};
+}; */

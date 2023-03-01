@@ -1,7 +1,9 @@
-export type MovieModel = {
+import { RowDataPacket } from 'mysql2';
+
+export type PrivateMovieModel = {
   id: string,
   title: string,
-  mainCharacter: {
+  main_character: {
     actor: string,
     role: string
   },
@@ -10,6 +12,8 @@ export type MovieModel = {
   rating: number
 };
 
-export type MovieData = Omit<MovieModel, 'id'>;
+export type MovieModel = PrivateMovieModel & RowDataPacket;
+
+export type MovieData = Omit<PrivateMovieModel, 'id'>;
 
 export type PartialMovieDataValidation = Partial<MovieData>;

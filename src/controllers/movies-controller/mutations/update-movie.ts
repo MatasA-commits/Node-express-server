@@ -1,12 +1,12 @@
 import { RequestHandler } from 'express';
 import { ValidationError } from 'yup';
-import { MovieModel, PartialMovieDataValidation } from '../types';
+import { PrivateMovieModel, PartialMovieDataValidation } from '../types';
 import moviesData from '../movies-data';
 import partialMovieDataValidationSchema from '../validation-schemas/movie-data-partial-validation-schema';
 
 export const updateMovie: RequestHandler<
 { id: string | undefined }, // Parametrai
-MovieModel | ResponseError, // Atsakymo tipas
+PrivateMovieModel | ResponseError, // Atsakymo tipas
 PartialMovieDataValidation, // Body - gaunami duomenys
 {} // QueryParams - duomenys siunciant GET uzklausas, pvz: ?min=1&max=18
 > = (req, res) => {

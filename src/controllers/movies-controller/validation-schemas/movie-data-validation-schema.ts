@@ -12,7 +12,7 @@ const movieDataValidationSchema: yup.ObjectSchema<MovieData> = yup.object({
   year: yearSchema.required('Year is required'),
   rating: ratingSchema.required('rating is required'),
   images: imagesSchema.required('images required'),
-  mainCharacter: mainCharacterSchema.required('main character required'),
+  main_character: mainCharacterSchema.required('main character required'),
 }).strict(true);
 
 export default movieDataValidationSchema;
