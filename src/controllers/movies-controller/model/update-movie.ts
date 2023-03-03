@@ -82,17 +82,12 @@ export const updateMovie = async (
     ${SQL.GROUP};
   `.trim();
 
-  console.log(mainCharacterBindings);
-  console.log('----------');
-
   const bindings = {
     id,
     ...imagesBindings,
     ...mainCharacterBindings,
     ...movieBindings,
   };
-
-  console.log(bindings);
 
   const [queryResultsArr] = await mySqlConnection.query<MovieModel[]>(preparedSql, bindings);
   const updatedMovie = queryResultsArr.at(-1) as MovieModel;
