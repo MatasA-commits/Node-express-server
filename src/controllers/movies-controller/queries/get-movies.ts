@@ -1,14 +1,20 @@
 import { RequestHandler } from 'express';
-import MovieService from '../../../services/movies-service';
+import ErrorService from '../../../services/error-service';
+import MoviesModel from '../model';
+
 import { MovieModel } from '../types';
 
 export const getMovies: RequestHandler<
 {},
-MovieModel[],
+MovieModel[] | ResponseError,
 {},
 {}
 > = async (req, res) => {
-  const movies = await MovieService.getMovies();
-
-  res.status(200).json(movies);
+  try {
+    const movies = await MoviesModel.getMovies();
+    res.status(200).json(movies);
+  } catch (error) {
+    const [status, errorResponse] = ErrorService.handleError(error);
+    res.status(status).json(errorResponse);
+  }
 };

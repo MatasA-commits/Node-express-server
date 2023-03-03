@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express';
-import MovieService from '../../../services/movies-service';
+import ErrorService, { ServerSetupError } from '../../../services/error-service';
+import MoviesModel from '../model';
 import { MovieModel } from '../types';
 
 export const getMovie: RequestHandler<
@@ -10,16 +11,13 @@ MovieModel | ResponseError,
 > = async (req, res) => {
   const { id } = req.params;
 
-  if (id === undefined) {
-    res.status(400).json({ error: 'server setup error' });
-    return;
-  }
-
   try {
-    const movie = await MovieService.getMovie(id);
+    if (id === undefined) throw new ServerSetupError();
+    const movie = await MoviesModel.getMovie(id);
+
     res.status(200).json(movie);
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'request error';
-    res.status(404).json({ error: message });
+    const [status, errorResponse] = ErrorService.handleError(error);
+    res.status(status).json(errorResponse);
   }
 };
