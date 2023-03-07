@@ -1,7 +1,9 @@
 import { getUser } from './get-user';
+import { createUser } from './create-user';
 
-const userModel = {
+const UserModel = {
   getUser,
+  createUser,
 };
 
-export default userModel;
+export default UserModel;
