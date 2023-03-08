@@ -1,14 +1,17 @@
 import jwt from 'jsonwebtoken';
 import config from '../config';
 
-const createToken = (userEmail: string, userRole: string) => {
-  const token = jwt.sign({ email: userEmail, role: userRole }, config.secret.jwtTokenKey);
+const create = (data: AuthData) => {
+  const token = jwt.sign(data, config.secret.jwtTokenKey);
 
   return token;
 };
 
+const decode = (token: string) => jwt.decode(token) as (DecodedAuthData | null);
+
 const TokenService = {
-  createToken,
+  create,
+  decode,
 };
 
 export default TokenService;

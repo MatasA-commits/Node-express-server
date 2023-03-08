@@ -1,0 +1,4 @@
+visu uzklausu tipus paversti i RequestHandler ir naudojant Javascript tikrinti visus uzklausos duomenis (validacijos schemomis):
+  * parametrus
+  * body
+  * search parametrus
