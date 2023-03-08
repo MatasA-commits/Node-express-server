@@ -1,13 +1,5 @@
 import { RowDataPacket } from 'mysql2';
 
-type UserEntity = {
-  id: number,
-  email: string,
-  name: string,
-  surname: string,
-  role: 'ADMIN' | 'USER'
-};
-
 export type RegistrationData = {
   email: string,
   name: string,
