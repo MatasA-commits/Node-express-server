@@ -7,6 +7,8 @@ update users
 set mobile = '+yyy xxx xxxxxx'
 where mobile is null;
 
+alter table users modify mobile varchar(64) not null;
+
 insert into users (email, password, name, surname,mobile) values 
 ('userTemp@gmail.com', '$2b$05$XpAbe6hvlL9ObmADeO1Dd.089uztgQvUEy4kJMqobxJLnp61.9pPK', 'temp', 'temp', '+yyy xxx xxxxxx')
 

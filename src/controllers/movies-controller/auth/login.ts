@@ -14,7 +14,7 @@ PartialCredentials,
 > = async (req, res) => {
   try {
     const credentials = credentialsSchema.validateSync(req.body, { abortEarly: false });
-    const user = await UserModel.getUser(credentials.email);
+    const user = await UserModel.getUserByEmail(credentials.email);
     const validPassword = await bcrypt.compare(credentials.password, user.password);
 
     if (!validPassword) throw new Error('incorrect password');

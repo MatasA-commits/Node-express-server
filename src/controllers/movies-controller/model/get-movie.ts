@@ -1,10 +1,10 @@
 import mysql from 'mysql2/promise';
 import config from '../../../config';
 import { NotFoundError } from '../../../services/error-service';
-import { MovieModel } from '../types';
+import { MovieViewModel } from '../types';
 import SQL from './sql';
 
-export const getMovie = async (id: string): Promise<MovieModel> => {
+export const getMovie = async (id: string): Promise<MovieViewModel> => {
   const mySqlConnection = await mysql.createConnection(config.db);
 
   const preparedSql = `
@@ -14,7 +14,7 @@ export const getMovie = async (id: string): Promise<MovieModel> => {
   `;
 
   const preparedSqlData = [id];
-  const [movies] = await mySqlConnection.query<MovieModel[]>(preparedSql, preparedSqlData);
+  const [movies] = await mySqlConnection.query<MovieViewModel[]>(preparedSql, preparedSqlData);
 
   mySqlConnection.end();
 

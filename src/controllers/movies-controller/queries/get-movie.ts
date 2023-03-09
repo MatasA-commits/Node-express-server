@@ -1,11 +1,11 @@
 import { RequestHandler } from 'express';
 import ErrorService, { ServerSetupError } from '../../../services/error-service';
 import MoviesModel from '../model';
-import { MovieModel } from '../types';
+import { MovieViewModel } from '../types';
 
 export const getMovie: RequestHandler<
 { id: string | undefined },
-MovieModel | ResponseError,
+MovieViewModel | ResponseError,
 {},
 {}
 > = async (req, res) => {

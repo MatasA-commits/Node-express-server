@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise';
 import config from '../../../config';
 import { colonObjectQueryFormat } from '../../../services/my-sql';
-import { MovieModel, PartialMovieDataValidation } from '../types';
+import { MovieViewModel, PartialMovieDataValidation } from '../types';
 import SQL from './sql';
 
 type PrepareSqlResult = [string, Record<string, string>];
@@ -65,7 +65,7 @@ const prepareMovieSql: PrepareSql = (movieData) => {
 export const updateMovie = async (
   id: string,
   movieData: PartialMovieDataValidation,
-): Promise<MovieModel> => {
+): Promise<MovieViewModel> => {
   const mySqlConnection = await mysql.createConnection(config.db);
   mySqlConnection.config.queryFormat = colonObjectQueryFormat;
 
@@ -89,8 +89,8 @@ export const updateMovie = async (
     ...movieBindings,
   };
 
-  const [queryResultsArr] = await mySqlConnection.query<MovieModel[]>(preparedSql, bindings);
-  const updatedMovie = queryResultsArr.at(-1) as MovieModel;
+  const [queryResultsArr] = await mySqlConnection.query<MovieViewModel[]>(preparedSql, bindings);
+  const updatedMovie = queryResultsArr.at(-1) as MovieViewModel;
 
   await mySqlConnection.end();
 

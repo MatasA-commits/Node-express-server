@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise';
 import config from '../../../config';
-import { MovieModel } from '../types';
+import { MovieViewModel } from '../types';
 
 export const deleteMovie = async (id: string): Promise<void> => {
   const mySqlConnection = await mysql.createConnection(config.db);
@@ -10,7 +10,7 @@ export const deleteMovie = async (id: string): Promise<void> => {
     DELETE from movies WHERE id = ?;`;
   const preparedSqlData = [id, id];
 
-  await mySqlConnection.query<MovieModel[]>(preparedSql, preparedSqlData);
+  await mySqlConnection.query<MovieViewModel[]>(preparedSql, preparedSqlData);
 
   mySqlConnection.end();
 };

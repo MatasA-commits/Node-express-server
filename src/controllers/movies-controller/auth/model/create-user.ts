@@ -1,32 +1,29 @@
 import mysql from 'mysql2/promise';
 import config from '../../../../config';
-import { UserEntityRow } from '../types';
+import { UserEntityRow, RegistrationData } from '../types';
 import SQL from './sql';
-
-type UserData = {
-  email: string,
-  password: string,
-  name: string,
-  surname: string,
-};
+import BcryptService from '../../../../services/bcrypt-service';
 
 export const createUser = async ({
   email,
   password,
   name,
   surname,
-}: UserData): Promise<UserEntityRow> => {
+  mobile,
+}: RegistrationData): Promise<UserEntityRow> => {
   const mySqlConnection = await mysql.createConnection(config.db);
 
   const preparedSql = `
-    INSERT INTO users (email, password, name, surname) VALUES 
-    (?, ?, ?, ?);
+    INSERT INTO users (email, password, name, surname, mobile) VALUES 
+    (?, ?, ?, ?, ?);
 
     ${SQL.SELECT}
     WHERE users.id = LAST_INSERT_ID();
   `;
 
-  const preparedSqlData = [email, password, name, surname];
+  const hashedPassword = BcryptService.hash(password);
+
+  const preparedSqlData = [email, hashedPassword, name, surname, mobile];
   const [queryResultsArr] = await mySqlConnection.query(
     preparedSql,
     preparedSqlData,

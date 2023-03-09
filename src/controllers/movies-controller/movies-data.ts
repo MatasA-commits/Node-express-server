@@ -1,6 +1,6 @@
-import { PrivateMovieModel } from './types';
+import { PrivateViewMovieModel } from './types';
 
-const moviesData: PrivateMovieModel[] = [
+const moviesData: PrivateViewMovieModel[] = [
   {
     id: '1',
     title: 'Harry Potter and the Sorcerers Stone',

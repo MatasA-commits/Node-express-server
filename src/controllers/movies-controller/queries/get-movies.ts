@@ -2,11 +2,11 @@ import { RequestHandler } from 'express';
 import ErrorService from '../../../services/error-service';
 import MoviesModel from '../model';
 
-import { MovieModel } from '../types';
+import { MovieViewModel } from '../types';
 
 export const getMovies: RequestHandler<
 {},
-MovieModel[] | ResponseError,
+MovieViewModel[] | ResponseError,
 {},
 {}
 > = async (req, res) => {

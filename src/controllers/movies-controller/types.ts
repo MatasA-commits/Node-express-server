@@ -1,6 +1,6 @@
 import { RowDataPacket } from 'mysql2';
 
-export type PrivateMovieModel = {
+export type PrivateViewMovieModel = {
   id: string,
   title: string,
   main_character: {
@@ -9,11 +9,22 @@ export type PrivateMovieModel = {
   },
   images: string[],
   year: string,
-  rating: number
+  rating: number,
+  owner: {
+    id: number,
+    name: string,
+    surname: string,
+    email: string,
+    mobile: string
+  }
 };
 
-export type MovieModel = PrivateMovieModel & RowDataPacket;
+export type MovieBody = Omit<MovieData, 'ownerId'>;
 
-export type MovieData = Omit<PrivateMovieModel, 'id'>;
+export type MovieViewModel = PrivateViewMovieModel & RowDataPacket;
 
-export type PartialMovieDataValidation = Partial<MovieData>;
+export type MovieData = Omit<PrivateViewMovieModel, 'id' | 'owner'> & {
+  ownerId: number
+};
+
+export type PartialMovieDataValidation = Partial<MovieBody>;

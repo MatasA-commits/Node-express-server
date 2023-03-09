@@ -1,20 +1,23 @@
 import { RequestHandler } from 'express';
-import ErrorService from '../../../services/error-service';
+import ErrorService, { ServerSetupError } from '../../../services/error-service';
 import MoviesModel from '../model';
-import { MovieModel, MovieData } from '../types';
+import { MovieViewModel, MovieData, MovieBody } from '../types';
 import movieDataValidationSchema from '../validation-schemas/movie-data-validation-schema';
+import UserModel from '../auth/model/index';
 
 export const createMovie: RequestHandler<
 {},
-MovieModel | ResponseError,
+MovieViewModel | ResponseError,
 MovieData,
 {}
 > = async (req, res) => {
   try {
-    const movieData: MovieData = movieDataValidationSchema
+    const movieData: MovieBody = movieDataValidationSchema
       .validateSync(req.body, { abortEarly: false });
 
-    const createdHouse = await MoviesModel.createMovie(movieData);
+    if (req.authData === undefined) throw new ServerSetupError();
+    const user = await UserModel.getUserByEmail(req.authData.email);
+    const createdHouse = await MoviesModel.createMovie({ ...movieData, ownerId: user.id });
 
     res.status(201).json(createdHouse);
   } catch (err) {

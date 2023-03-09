@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise';
 import config from '../../../config';
-import { MovieModel, MovieData } from '../types';
+import { MovieViewModel, MovieData } from '../types';
 import SQL from './sql';
 
 type CreateMovieQueryResult = [
@@ -8,16 +8,16 @@ type CreateMovieQueryResult = [
   mysql.ResultSetHeader,
   mysql.ResultSetHeader,
   mysql.ResultSetHeader,
-  MovieModel[],
+  MovieViewModel[],
 ];
 
-export const createMovie = async (movieData: MovieData): Promise<MovieModel> => {
+export const createMovie = async (movieData: MovieData): Promise<MovieViewModel> => {
   const mySqlConnection = await mysql.createConnection(config.db);
 
   const preparedSql = `
   INSERT INTO main_character (actor, role) VALUES (?, ?);
     
-  INSERT INTO movies (title, year, rating, mainCharacterId) VALUES (?,?,?, LAST_INSERT_ID());
+  INSERT INTO movies (title, year, rating, ownerId, mainCharacterId ) VALUES (?,?,?,?, LAST_INSERT_ID());
 
 
   SET @movieId = LAST_INSERT_ID();
@@ -34,6 +34,7 @@ export const createMovie = async (movieData: MovieData): Promise<MovieModel> => 
     movieData.title,
     movieData.year,
     movieData.rating,
+    movieData.ownerId,
     ...movieData.images,
   ];
 

@@ -1,7 +1,7 @@
 import * as yup from 'yup';
-import { RegistrationData } from '../types';
+import { RegistrationBody } from '../types';
 
-const registrationDataValidationSchema: yup.ObjectSchema<RegistrationData> = yup
+const registrationDataValidationSchema: yup.ObjectSchema<RegistrationBody> = yup
   .object({
     email: yup.string()
       .email()
@@ -25,5 +25,9 @@ const registrationDataValidationSchema: yup.ObjectSchema<RegistrationData> = yup
       .required('surname is required')
       .min(2, 'name must be atleast 2 symbols long')
       .max(64, 'name must be not longer than 64 symbols'),
+    mobile: yup.string()
+      .required('mobile is required')
+      .min(9, 'mobile must be atleast 2 symbols long')
+      .max(16, 'mobile must be not longer than 64 symbols'),
   }).strict(true);
 export default registrationDataValidationSchema;
