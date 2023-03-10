@@ -2,7 +2,9 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 
 const create = (data: AuthData) => {
-  const token = jwt.sign(data, config.secret.jwtTokenKey);
+  const token = jwt.sign(data, config.jwtToken.secret, {
+    expiresIn: config.jwtToken.expiresIn,
+  });
 
   return token;
 };
@@ -14,7 +16,8 @@ const decode = (token: string): DecodedAuthData | null => {
   if (typeof data === 'string') return null;
 
   return {
-    iat: data.iat,
+    iat: data.iat as number,
+    exp: data.exp as number,
     email: data.email,
   };
 };

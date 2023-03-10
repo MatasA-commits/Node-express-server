@@ -15,6 +15,11 @@ const authMiddleware: RequestHandler = (req, res, next) => {
     if (authData === null) throw new AuthorizationError();
 
     req.authData = authData;
+
+    const timeStampNow = Math.round(new Date().valueOf() / 1000);
+
+    if (authData.exp < timeStampNow) throw new AuthorizationError();
+
     next();
   } catch (err) {
     const [status, errorResponse] = ErrorService.handleError(err);
